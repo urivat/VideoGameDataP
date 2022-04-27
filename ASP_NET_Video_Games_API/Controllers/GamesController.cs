@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ASP_NET_Video_Games_API.Controllers
 {
-    // api/games
+    
     [Route("api/[controller]")]
     [ApiController]
     public class GamesController : ControllerBase
@@ -17,11 +17,26 @@ namespace ASP_NET_Video_Games_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetGames()
-        {
-            var videoGameNames = _context.VideoGames.Select(vg => vg.Name).Distinct();
+        public IActionResult GetGamesName()
+        {/*Select(vg => vg.Name).Distinct()*/
+            var videoGameNames = _context.VideoGames.Select(vg => vg.Name);
 
             return Ok(videoGameNames);
+        }
+
+        [HttpGet]
+        public IActionResult GetGamesGlobal()
+        {/*Select(vg => vg.Name).Distinct()*/
+            var videoGameGlobal = _context.VideoGames.Select(vg => vg.GlobalSales);
+
+            return Ok(videoGameGlobal);
+        }
+        [HttpGet]
+        public IActionResult GetGamesPublisher()
+        {/*Select(vg => vg.Name).Distinct()*/
+            var videoGamePublish = _context.VideoGames.Select(vg => vg.Publisher).Distinct();
+
+            return Ok(videoGamePublish);
         }
 
         [HttpGet("{id}")]
